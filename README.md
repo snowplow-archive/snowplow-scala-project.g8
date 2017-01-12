@@ -56,4 +56,3 @@ limitations under the License.
 [snowplow-scala-lib]: https://github.com/snowplow/snowplow-scala-lib.g8
 
 [license]: http://www.apache.org/licenses/LICENSE-2.0
-

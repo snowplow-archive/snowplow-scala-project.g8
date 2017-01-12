@@ -19,6 +19,7 @@ lazy val root = project.in(file("."))
     ),
     libraryDependencies ++= Seq(
       Dependencies.decline,
+      Dependencies.fs2,
 
       Dependencies.specs2,
       Dependencies.scalaCheck

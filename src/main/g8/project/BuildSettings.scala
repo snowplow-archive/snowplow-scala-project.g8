@@ -21,9 +21,9 @@ import sbtassembly.AssemblyKeys._
 
 
 /**
- * Common settings-patterns for Snowplow apps and libaries.
- * To enable any of these you need to explicitly add Settings value to build.sbt
- */
+  * Common settings-patterns for Snowplow apps and libaries.
+  * To enable any of these you need to explicitly add Settings value to build.sbt
+  */
 object BuildSettings {
 
   lazy val compilerSettings = Seq[Setting[_]](
@@ -52,7 +52,7 @@ object BuildSettings {
 
   // sbt-assembly settings
   lazy val assemblySettings = Seq(
-    assemblyJarName in assembly := { s"\${moduleName.value}-\${version.value}.jar" }, 
+    assemblyJarName in assembly := { s"\${moduleName.value}-\${version.value}.jar" },
 
     assemblyMergeStrategy in assembly := {
       case PathList("META-INF", xs @ _*) => MergeStrategy.discard

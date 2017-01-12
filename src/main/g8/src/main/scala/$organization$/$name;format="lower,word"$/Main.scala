@@ -13,10 +13,28 @@
 
 package $organization$.$name;format="lower,word"$
 
-object Main {
+import cats.implicits._
 
-  def main(args: Array[String]): Unit = {
-    println("Hello, " ++ generated.BuildInfo.name)
-  }
+import com.monovore.decline._
 
+import cats.effect.{ExitCode, IO, IOApp}
+
+object Main extends IOApp {
+
+  case class AppConf(name: String, age: Option[Int])
+
+  val name = Opts.option[String]("name", short = "n", metavar = "str", help = "Just anything actually")
+  val age = Opts.option[Int]("age", short = "i", metavar = "int", help = "Optional integer").orNone
+
+  val appConf = (name, age).mapN(AppConf.apply)
+
+  val command = Command("$name$", "Example Snowplow project")(appConf)
+
+  def run(args: List[String]): IO[ExitCode] =
+    command.parse(args) match {
+      case Right(AppConf(name, age)) =>
+        IO(println(s"Hello, \$name of age \$age.")).as(ExitCode.Success)
+      case Left(error) =>
+        IO(System.err.println(error)).as(ExitCode(2))
+    }
 }
