@@ -7,11 +7,12 @@ For libraries supposed to be published on Maven use [snowplow-scala-lib.g8][snow
 
 ## Quickstart
 
-Assuming SBT, git, **[Vagrant] [vagrant-install]** and **[VirtualBox] [virtualbox-install]** installed:
+Assuming SBT, git, **[Vagrant][vagrant-install]** and **[VirtualBox][virtualbox-install]** installed:
 
 ```bash
 host$ sbt new snowplow/snowplow-scala-app.g8
 ```
+
 Quickstart with new project:
 
 ```bash
@@ -25,7 +26,7 @@ guest$ sbt test
 
 Snowplow Scala Skeleton is copyright 2017 Snowplow Analytics Ltd.
 
-Licensed under the **[Apache License, Version 2.0] [license]** (the "License");
+Licensed under the **[Apache License, Version 2.0][license]** (the "License");
 you may not use this software except in compliance with the License.
 
 Unless required by applicable law or agreed to in writing, software
