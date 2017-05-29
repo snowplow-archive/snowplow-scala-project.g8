@@ -3,10 +3,11 @@ lazy val root = project.in(file("."))
     name := "$name;format="lower,word"$",
     version := "$version$",
     organization := "com.snowplowanalytics",
-    scalaVersion := "2.11.8",
-    crossScalaVersions := Seq("2.11.8", "2.12.1"),
+    scalaVersion := "2.11.11",
+    crossScalaVersions := Seq("2.11.11", "2.12.1"),
     initialCommands := "import com.snowplowanalytics.$name;format="lower,word"$._"
   )
+  .settings(BuildSettings.assemblySettings)
   .settings(BuildSettings.buildSettings)
   .settings(
     resolvers ++= Seq(
@@ -23,6 +24,4 @@ lazy val root = project.in(file("."))
     )
   )
   .settings(BuildSettings.helpersSettings)
-
-
 

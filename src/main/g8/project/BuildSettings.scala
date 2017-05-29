@@ -15,6 +15,11 @@
 import sbt._
 import Keys._
 
+// sbt-assembly
+import sbtassembly._
+import sbtassembly.AssemblyKeys._
+
+
 /**
  * Common settings-patterns for Snowplow apps and libaries.
  * To enable any of these you need to explicitly add Settings value to build.sbt
@@ -55,6 +60,16 @@ object BuildSettings {
       "-target", "1.8",
       "-Xlint"
     )
+  )
+
+  // sbt-assembly settings
+  lazy val assemblySettings = Seq(
+    assemblyJarName in assembly := { name.value + "-" + version.value + ".jar" },
+
+    assemblyMergeStrategy in assembly := {
+      case PathList("META-INF", xs @ _*) => MergeStrategy.discard
+      case x => MergeStrategy.first
+    }
   )
 
   lazy val helpersSettings = Seq[Setting[_]](
