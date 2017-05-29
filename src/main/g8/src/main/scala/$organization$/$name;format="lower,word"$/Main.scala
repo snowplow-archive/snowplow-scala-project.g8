@@ -40,13 +40,13 @@ object Main {
    */
   def transform(raw: CliConfig): Either[String, AppConfig] = 
     if (raw.value < 0) Left("Value cannot be less than 0")
-    else if (!raw.input.exists) Left(s"File does not exist")
-    else Right(AppConfig(raw.value, raw.input, raw.verbose)
+    else if (!raw.input.exists) Left(s"File [\${raw.input}] does not exist")
+    else Right(AppConfig(raw.value, raw.input, raw.verbose))
 
   /**
    * Scopt parser providing necessary argument annotations and basic validation
    */
-  val parser = new scopt.OptionParser[Config](generated.ProjectMetadata.name) {
+  private val parser = new scopt.OptionParser[CliConfig](generated.ProjectMetadata.name) {
     head(generated.ProjectMetadata.name, generated.ProjectMetadata.version)
   
     opt[Int]('v', "value").required().action( (x, c) =>
@@ -60,8 +60,6 @@ object Main {
       c.copy(verbose = true) ).text("Verbose output")
   
     help("help").text("prints this usage text")
-  
-    note("some notes.".newline)
   }
 
 
@@ -77,5 +75,6 @@ object Main {
       case None =>
         // Invalid arguments
         sys.exit(1)
+    }
   }
 }
