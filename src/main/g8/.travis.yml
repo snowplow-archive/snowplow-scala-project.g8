@@ -1,8 +1,7 @@
 language: scala
 scala:
-- 2.10.6
-- 2.11.8
-- 2.12.1
+- 2.11.11
+- 2.12.2
 jdk:
 - oraclejdk7
 - oraclejdk8
@@ -17,5 +16,5 @@ deploy:
   on:
     # Deploy iff some tag is specified
     tags: true
-    condition: '"\$(.travis/is_$name;format="lower,word"$_release_tag.sh \$TRAVIS_TAG)" == "" \&\& \$? == 0'
+    condition: '"\$(.travis/is_release_tag.sh \$TRAVIS_TAG)" == "" \&\& \$? == 0'
 

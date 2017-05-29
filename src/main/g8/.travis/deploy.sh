@@ -1,19 +1,21 @@
 #!/bin/bash
 
-tag=$1
+tag=\$1
+project=$name;format="lowercase,snake"$
 
-len=\${#$name;format="snake"$}
+slashed="\$project/"
+slashed_len=\${#slashed}
 
-cicd=\${tag:0:\$len}
-release=\${tag:\$len}
+cicd=\${tag:0:\${slashed_len}}
+release=\${tag:\${slashed_len}}
 
-if [ "\${cicd}" == "$name;format="snake"$/" ]; then
+if [ "\${cicd}" == "\${slashed}" ]; then
     if [ "\${release}" == "" ]; then
         echo "Warning! No release specified! Ignoring."
         exit 2
     fi
 else
-    echo "This can't be deployed - there's no $name;format="snake"$ tag! (is the travis condition set?)"
+    echo "This can't be deployed - there's no \$slashed tag! (is the travis condition set?)"
     exit 1
 fi
  
