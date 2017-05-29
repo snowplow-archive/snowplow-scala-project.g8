@@ -40,7 +40,7 @@ object Main {
    */
   def transform(raw: CliConfig): Either[String, AppConfig] = 
     if (raw.value < 0) Left("Value cannot be less than 0")
-    else if (!raw.input.exists) Left(s"File [${raw.input.toString}] does not exist")
+    else if (!raw.input.exists) Left(s"File does not exist")
     else Right(AppConfig(raw.value, raw.input, raw.verbose)
 
   /**
@@ -69,7 +69,7 @@ object Main {
     println("Hello $organization$.$name$!")
 
     parser.parse(args, rawCliConfig).map(transform) match {
-      case Some(Right(appConfig)) => println(s"Success: $appConfig")
+      case Some(Right(appConfig)) => println(s"Success: " + appConfig.toString)
       case Some(Left(error)) => 
         // Failed transformation
         println(error)
