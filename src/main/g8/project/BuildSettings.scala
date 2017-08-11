@@ -27,18 +27,20 @@ import sbtassembly.AssemblyKeys._
 object BuildSettings {
 
   // Makes package (build) metadata available withing source code
-  lazy val scalifySettings = Seq(sourceGenerators in Compile <+= (sourceManaged in Compile, version, name, organization, scalaVersion) map { (d, v, n, o, sv) =>
-    val file = d / "settings.scala"
+  lazy val scalifySettings = Seq(
+    sourceGenerators in Compile += Def.task {
+      val file = (sourceManaged in Compile).value / "settings.scala"
     IO.write(file, """package $organization$.$name;format="lower,word"$.generated
-                     |object ProjectMetadata {
-                     |  val version = "%s"
-                     |  val name = "%s"
-                     |  val organization = "%s"
-                     |  val scalaVersion = "%s"
-                     |}
-                     |""".stripMargin.format(v, n, o, sv))
-    Seq(file)
-  })
+                      |object ProjectMetadata {
+                      |  val version = "%s"
+                      |  val name = "%s"
+                      |  val organization = "%s"
+                      |  val scalaVersion = "%s"
+                      |}
+                      |""".stripMargin.format(version.value, name.value, organization.value, scalaVersion.value))
+      Seq(file)
+    }.taskValue
+  )
 
   lazy val buildSettings = Seq[Setting[_]](
     scalacOptions := Seq(
@@ -53,7 +55,9 @@ object BuildSettings {
       "-Ywarn-nullary-unit",
       "-Ywarn-numeric-widen",
       "-Ywarn-unused",
-      "-Ywarn-value-discard"
+      "-Ywarn-value-discard",
+      "-Ypartial-unification",
+      "language:higherKinds"
     ),
     javacOptions := Seq(
       "-source", "1.8",
