@@ -22,6 +22,17 @@ guest$ cd /vagrant
 guest$ sbt test
 ```
 
+Add AWS credentials to `.travis.yml` to publish application on AWS S3:
+
+* `AWS_ACCESS_KEY`
+* `AWS_SECRET_KEY`
+
+## Assumptions
+
+* Scala Application uses `rc` pre-releases
+* Scala Application uses generic tool [release-manager][release-manager] to publish itself via Travis CI
+* Scala Application doesn't need multiple Scala versions, therefore uses most popular - 2.11
+
 ## Copyright and License
 
 Snowplow Scala Skeleton is copyright 2017 Snowplow Analytics Ltd.
@@ -34,6 +45,8 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+[release-manager]: https://github.com/snowplow/release-manager
 
 [talk-to-us]: https://github.com/snowplow/snowplow/wiki/Talk-to-us
 

@@ -13,20 +13,15 @@
 
 package $organization$.$name;format="lower,word"$
 
-import org.scalatest.{Matchers, PropSpec}
-import org.scalatest.prop._
+import org.specs2.Specification
 
-class CheckSpec
-  extends PropSpec
-  with GeneratorDrivenPropertyChecks
-  with Matchers {
+class CheckSpec extends Specification { def is = s2"""
+  One plus one test $e1
+  """
 
-  property ("Addition and multiplication are related") {
-    forAll { (x: Int) =>
-      whenever(x > 0) {
-        x * 2 should be(x + x)
-      }
-    }
+  def e1 = {
+    val result = 1 + 1
+    val expected = 2
+    result must beEqualTo(expected)
   }
-
 }

@@ -4,7 +4,6 @@ lazy val root = project.in(file("."))
     version := "$version$",
     organization := "com.snowplowanalytics",
     scalaVersion := "2.11.11",
-    crossScalaVersions := Seq("2.11.11", "2.12.1"),
     initialCommands := "import com.snowplowanalytics.$name;format="lower,word"$._"
   )
   .settings(BuildSettings.assemblySettings)

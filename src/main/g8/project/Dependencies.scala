@@ -16,7 +16,7 @@ object Dependencies {
 
   object V {
     // Scala
-    val scopt            = "3.5.0"
+    val scopt            = "3.6.0"
     val scalaz7          = "7.0.9"
     val json4sJackson    = "3.2.11"
     // Scala (test only)
