@@ -2,9 +2,9 @@ lazy val root = project.in(file("."))
   .settings(
     name := "$name;format="lower,word"$",
     version := "$version$",
-    organization := "com.snowplowanalytics",
+    organization := "$organization$",
     scalaVersion := "2.11.11",
-    initialCommands := "import com.snowplowanalytics.$name;format="lower,word"$._"
+    initialCommands := "import $organization$.$name;format="lower,word"$._"
   )
   .settings(BuildSettings.assemblySettings)
   .settings(BuildSettings.buildSettings)
@@ -24,4 +24,3 @@ lazy val root = project.in(file("."))
     )
   )
   .settings(BuildSettings.helpersSettings)
-
