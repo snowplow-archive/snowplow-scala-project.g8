@@ -60,6 +60,21 @@ object BuildSettings {
     }
   )
 
+  lazy val projectSettings = Seq(
+    sourceGenerators in Compile += Def.task {
+      val file = (sourceManaged in Compile).value / "settings.scala"
+      IO.write(file, """package $organization$.$name;format="lower,word"$.generated
+                       |object ProjectSettings {
+                       |  val organization = "%s"
+                       |  val name = "%s"
+                       |  val version = "%s"
+                       |  val description = "%s"
+                       |}
+                       |""".stripMargin.format(organization.value, name.value, version.value, description.value))
+      Seq(file)
+    }.taskValue
+  )
+
   lazy val helpersSettings = Seq[Setting[_]](
     initialCommands := "import $organization$.$name;format="lower,word"$._"
   )
