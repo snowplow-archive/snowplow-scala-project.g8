@@ -4,3 +4,24 @@ scala:
   - $scalaVersion$
 jdk:
   - oraclejdk8
+services:
+  - docker
+script:
+  - sbt ++\$TRAVIS_SCALA_VERSION coverage test coverageReport
+before_install:
+  - bash ./.travis/checkTag.sh \$TRAVIS_TAG
+deploy:
+  provider: script
+  script: ./.travis/deploy.sh \$TRAVIS_TAG
+  skip_cleanup: true
+  on:
+    tags: true
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+env:
+  global:
+    - SONA_USER=snowplow
+    # BINTRAY_SNOWPLOW_MAVEN_USER
+    - secure: encrypted_username
+    # BINTRAY_SNOWPLOW_MAVEN_API_KEY
+    - secure: encrypted_key

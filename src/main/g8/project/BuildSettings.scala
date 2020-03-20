@@ -4,6 +4,15 @@ $copyright$
 import sbt._
 import Keys._
 
+// Bintray plugin
+import bintray.BintrayPlugin._
+import bintray.BintrayKeys._
+
+// Docs
+import sbtunidoc.ScalaUnidocPlugin.autoImport._
+import com.typesafe.sbt.site.SitePlugin.autoImport._
+import com.typesafe.sbt.SbtGit.GitKeys._
+
 object BuildSettings {
   lazy val projectSettings = Seq(
     organization := "$organization$",
@@ -70,5 +79,33 @@ object BuildSettings {
     resolvers ++= Seq(
       "Sonatype OSS Snapshots" at "http://oss.sonatype.org/content/repositories/snapshots/"
     )
+  )
+
+  lazy val publishSettings = bintraySettings ++ Seq(
+    publishMavenStyle := true,
+    publishArtifact := true,
+    publishArtifact in Test := false,
+    licenses += ("Apache-2.0", url("http://www.apache.org/licenses/LICENSE-2.0.html")),
+    bintrayOrganization := Some("snowplow"),
+    bintrayRepository := "snowplow-maven",
+    pomIncludeRepository := { _ => false },
+    homepage := Some(url("http://snowplowanalytics.com")),
+    scmInfo := Some(ScmInfo(url("https://github.com/snowplow/$name;format="norm"$"),
+      """scm:git@github.com:snowplow/$name;format="norm"$.git""")),
+    pomExtra := (
+      <developers>
+        <developer>
+          <name>Snowplow Analytics Ltd</name>
+          <email>support@snowplowanalytics.com</email>
+          <organization>Snowplow Analytics Ltd</organization>
+          <organizationUrl>http://snowplowanalytics.com</organizationUrl>
+        </developer>
+      </developers>)
+  )
+
+  lazy val docsSettings = Seq(
+    addMappingsToSiteDir(mappings in (ScalaUnidoc, packageDoc), siteSubdirName in ScalaUnidoc),
+    gitRemoteRepo := """https://github.com/snowplow/$name;format="norm"$.git""",
+    siteSubdirName := ""
   )
 }

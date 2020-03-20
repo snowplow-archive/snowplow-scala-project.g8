@@ -7,3 +7,8 @@ lazy val root = project
   .settings(BuildSettings.compilerSettings)
   .settings(BuildSettings.helperSettings)
   .settings(BuildSettings.resolverSettings)
+  .settings(BuildSettings.publishSettings)
+  .settings(BuildSettings.docsSettings)
+  .settings(
+    libraryDependencies ++= Seq(Dependencies.specs2)
+  )
