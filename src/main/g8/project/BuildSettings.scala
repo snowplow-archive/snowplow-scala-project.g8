@@ -4,6 +4,15 @@ $copyright$
 import sbt._
 import Keys._
 
+// Docker
+import com.typesafe.sbt.packager.docker.DockerPlugin.autoImport.dockerBaseImage
+import com.typesafe.sbt.packager.docker._
+
+// sbt-assembly
+/* Uncomment if using sbt-assembly. */
+//import sbtassembly._
+//import sbtassembly.AssemblyKeys._
+
 object BuildSettings {
   lazy val projectSettings = Seq(
     organization := "$organization$",
@@ -71,4 +80,22 @@ object BuildSettings {
       "Sonatype OSS Snapshots" at "http://oss.sonatype.org/content/repositories/snapshots/"
     )
   )
+
+  lazy val dockerSettings = Seq(
+    dockerUsername := Some("snowplow"),
+    dockerBaseImage := "snowplow-docker-registry.bintray.io/snowplow/base-debian:0.1.0",
+    maintainer in Docker := "Snowplow Analytics Ltd. <support@snowplowanalytics.com>",
+    daemonUser in Docker := "snowplow",
+    dockerExposedPorts ++= Seq(9000, 9001),
+    dockerExposedUdpPorts += 4444
+  )
+
+  /* Uncomment if using sbt-assembly. */
+  /*lazy val assemblySettings = Seq(
+    assemblyJarName in assembly := { s"\${moduleName.value}-\${version.value}.jar" },
+    assemblyMergeStrategy in assembly := {
+      case PathList("META-INF", xs @ _*) => MergeStrategy.discard
+      case x => MergeStrategy.first
+    }
+  )*/
 }
