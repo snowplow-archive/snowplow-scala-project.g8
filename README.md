@@ -135,6 +135,10 @@ For a full list of parameters used in these templates, refer to the `default.pro
 
 The commands above with create a new directory in your current working directory named `new-project`. All the template's files will be created inside this new directory.
 
+## More resources
+
+Find more about Snowplow's engineering-related practices, conventions and resources in the [dedicated repo][eng-resources].
+
 ## Copyright and license
 
 snowplow-scala-project.g8 is copyright 2020-2020 Snowplow Analytics Ltd.
@@ -152,3 +156,4 @@ limitations under the License.
 [snowplow]: http://snowplowanalytics.com/
 [giter8]: http://www.foundweekends.org/giter8/
 [semver]: https://semver.org/
+[eng-resources]: https://github.com/snowplow-incubator/engineering-resources
