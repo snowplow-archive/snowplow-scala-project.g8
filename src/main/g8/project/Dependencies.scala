@@ -10,7 +10,7 @@ object Dependencies {
     // Scala third-party
     val catsCore   = "2.1.1"
     val catsEffect = "2.1.3"
-    val circe      = "0.11.1"
+    val circe      = "0.13.0"
 
     // Scala first-party
 
