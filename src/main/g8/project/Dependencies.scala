@@ -15,7 +15,7 @@ object Dependencies {
     // Scala first-party
 
     // Testing
-    val specs2     = "4.7.0" // 4.7.1 bumps cats to 2.0.0
+    val specs2     = "4.10.1"
     val scalaCheck = "1.14.3"
   }
 
