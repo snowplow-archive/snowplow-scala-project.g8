@@ -8,15 +8,15 @@ object Dependencies {
     // Java
 
     // Scala third-party
-    val catsCore   = "1.6.1"
-    val catsEffect = "1.4.1"
-    val circe      = "0.11.1"
+    val catsCore   = "2.1.1"
+    val catsEffect = "2.1.3"
+    val circe      = "0.13.0"
 
     // Scala first-party
 
     // Testing
-    val specs2     = "4.7.0"
-    val scalaCheck = "1.14.1"
+    val specs2     = "4.10.1"
+    val scalaCheck = "1.14.3"
   }
 
   // Java

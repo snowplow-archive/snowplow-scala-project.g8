@@ -1,5 +1,7 @@
 # $name$
 
+[![Coverage Status][coveralls-image]][coveralls]
+
 ## Quickstart
 
 Assuming `git` and `sbt` are installed:
@@ -30,3 +32,6 @@ limitations under the License.
 
 [release-image]: http://img.shields.io/badge/release-$version$-blue.svg?style=flat
 [releases]: https://github.com/snowplow/$name;format="lower,word"$/releases
+
+[coveralls]: https://coveralls.io/github/snowplow-incubator/$name;format="lower,word"$?branch=master
+[coveralls-image]: https://coveralls.io/repos/github/snowplow-incubator/$name;format="lower,word"$/badge.svg?branch=master
